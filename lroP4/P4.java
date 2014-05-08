@@ -20,6 +20,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 public class P4 extends HttpServlet {
 
@@ -50,7 +51,7 @@ public class P4 extends HttpServlet {
 }
 
 class TvmlTransformer {
-    String transform () throws IOException, TransformerException {
+    String transform () throws IOException, TransformerException, SAXException {
         String outputHTML = new String();
 
         URL urlTvml = new URL("http://localhost:8024/lro24/tvml-ok.xml");
