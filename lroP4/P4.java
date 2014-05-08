@@ -70,7 +70,6 @@ class TvmlTransformer {
 
         StringWriter writer = new StringWriter();
         StreamResult result = new StreamResult(writer);
-        StreamResult out = new StreamResult(outputHTML);
         transformer.transform(new DOMSource(inDoc), result);
         writer.flush();
 
