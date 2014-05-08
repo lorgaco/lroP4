@@ -23,21 +23,13 @@ public class P3 extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
+        TvmlTransformer transformer = new TvmlTransformer();
+        String outputHtml = transformer.transform();
+
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        out.println("<html><head><title>Servicio de TV</title>");
-        out.println("</head><body>");
-        out.println("<h1>Servicio de consulta de la programaci&oacute;n</h1>");
-        out.println("<h2>Bienvenido a este servicio</h2>");
-        out.println("<h3>Selecciona lo que quieres buscar:</h3>");
-        out.println("<form method='POST' action='?step=1'>");
-        out.println("<input type='radio' name='query' value='shows' checked> Consulta series<br>");
-        out.println("<input type='radio' name='query' value='movies'> Consulta Pel&iacute;culas<br>");
-        out.println("<p><input type='submit' value='Enviar'>");
-        out.println("</form>");
-        out.println("</body></html>");
-
+        out.println(outputHtml);
     }
 }
 
