@@ -19,7 +19,7 @@ import javax.xml.transform.stream.StreamSource;
 
 public class P3 extends HttpServlet {
 
-    TvmlReader TvGuide;
+    //TvmlReader TvGuide;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
@@ -35,7 +35,7 @@ public class P3 extends HttpServlet {
 }
 
 public class TvmlTransformer {
-    String transform () throws IOException, ParserConfigurationException, SAXException, TransformerException {
+    String transform () throws IOException, TransformerException {
         String outputHTML;
 
         URL urlTvml = new URL("http://localhost:8024/lro24/tvml-ok.xml");
