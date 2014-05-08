@@ -34,7 +34,7 @@ public class P3 extends HttpServlet {
     }
 }
 
-public class TvmlTransformer {
+class TvmlTransformer {
     String transform () throws IOException, TransformerException {
         String outputHTML;
 
