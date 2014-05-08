@@ -5,6 +5,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import java.lang.Exception;
+import java.lang.String;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -48,7 +49,7 @@ public class P4 extends HttpServlet {
 
 class TvmlTransformer {
     String transform () throws IOException, TransformerException {
-        String outputHTML;
+        String outputHTML = new String();
 
         URL urlTvml = new URL("http://localhost:8024/lro24/tvml-ok.xml");
         URLConnection conTvml = urlTvml.openConnection();
