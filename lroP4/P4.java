@@ -53,7 +53,6 @@ public class P4 extends HttpServlet {
 
 class TvmlTransformer {
     String transform () throws IOException, TransformerException, SAXException, ParserConfigurationException {
-        String outputHTML = new String();
 
         URL urlTvml = new URL("http://localhost:8024/lro24/tvml-ok.xml");
         URLConnection conTvml = urlTvml.openConnection();
@@ -69,15 +68,13 @@ class TvmlTransformer {
         TransformerFactory factory = TransformerFactory.newInstance();
         Transformer transformer = factory.newTransformer(xslStream);
 
-        //StreamResult out = new StreamResult(outputHTML);
-        Document outDoc = new Document();
-        transformer.transform(new DOMSource(inDoc), new DOMResult(outDoc));
+        StringWriter writer = new StringWriter();
+        StreamResult result = new StreamResult(writer);
+        StreamResult out = new StreamResult(outputHTML);
+        transformer.transform(new DOMSource(inDoc), result);
+        writer.flush();
 
-        DOMImplementationLS domImplementation = (DOMImplementationLS) outDoc.getImplementation();
-        LSSerializer lsSerializer = domImplementation.createLSSerializer();
-        outputHTML = lsSerializer.writeToString(outDoc);
-
-        return outputHTML;
+        return writer.toString();
 
     }
 }
