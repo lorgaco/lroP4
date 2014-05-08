@@ -19,6 +19,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+
+
 public class P4 extends HttpServlet {
 
     //TvmlReader TvGuide;
@@ -53,7 +55,10 @@ class TvmlTransformer {
 
         URL urlTvml = new URL("http://localhost:8024/lro24/tvml-ok.xml");
         URLConnection conTvml = urlTvml.openConnection();
-        StreamSource tvmlStream = new StreamSource(conTvml.getInputStream());
+        //StreamSource tvmlStream = new StreamSource(conTvml.getInputStream());
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = docFactory.newDocumentBuilder();
+        Document doc = builder.parse(conTvml.getInputStream());
 
         URL urlXSL = new URL("http://localhost:8024/lro24/tvml14.xsl");
         URLConnection conXSL = urlXSL.openConnection();
@@ -62,7 +67,7 @@ class TvmlTransformer {
         TransformerFactory factory = TransformerFactory.newInstance();
         Transformer transformer = factory.newTransformer(xslStream);
         StreamResult out = new StreamResult(outputHTML);
-        transformer.transform(tvmlStream, out);
+        transformer.transform(new DOMSource(doc), out);
         return outputHTML;
 
     }
