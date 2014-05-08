@@ -51,7 +51,7 @@ public class P4 extends HttpServlet {
 }
 
 class TvmlTransformer {
-    String transform () throws IOException, TransformerException, SAXException {
+    String transform () throws IOException, TransformerException, SAXException, ParserConfigurationException {
         String outputHTML = new String();
 
         URL urlTvml = new URL("http://localhost:8024/lro24/tvml-ok.xml");
