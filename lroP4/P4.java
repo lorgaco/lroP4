@@ -4,6 +4,7 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import java.lang.Exception;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -23,14 +24,24 @@ public class P4 extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+        try {
+            TvmlTransformer transformer = new TvmlTransformer();
+            String outputHtml = transformer.transform();
 
-        TvmlTransformer transformer = new TvmlTransformer();
-        String outputHtml = transformer.transform();
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+            out.println(outputHtml);
+        } catch (Exception e){
 
-        out.println(outputHtml);
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+
+            out.println("<html><head><title>Exception</title></head><body>");
+            out.println(sw.toString());
+            out.println("</body></html>");
+        }
     }
 }
 
