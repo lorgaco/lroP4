@@ -15,6 +15,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -59,7 +60,7 @@ class TvmlTransformer {
         //StreamSource tvmlStream = new StreamSource(conTvml.getInputStream());
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = docFactory.newDocumentBuilder();
-        Document doc = builder.parse(conTvml.getInputStream());
+        Document inDoc = builder.parse(conTvml.getInputStream());
 
         URL urlXSL = new URL("http://localhost:8024/lro24/tvml14.xsl");
         URLConnection conXSL = urlXSL.openConnection();
@@ -67,8 +68,15 @@ class TvmlTransformer {
 
         TransformerFactory factory = TransformerFactory.newInstance();
         Transformer transformer = factory.newTransformer(xslStream);
-        StreamResult out = new StreamResult(outputHTML);
-        transformer.transform(new DOMSource(doc), out);
+
+        //StreamResult out = new StreamResult(outputHTML);
+        Document outDoc = new Document();
+        transformer.transform(new DOMSource(inDoc), new DOMResult(outDoc));
+
+        DOMImplementationLS domImplementation = (DOMImplementationLS) outDoc.getImplementation();
+        LSSerializer lsSerializer = domImplementation.createLSSerializer();
+        outputHTML = lsSerializer.writeToString(outDoc);
+
         return outputHTML;
 
     }
