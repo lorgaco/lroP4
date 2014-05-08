@@ -24,12 +24,13 @@ public class P4 extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
         try {
             TvmlTransformer transformer = new TvmlTransformer();
             String outputHtml = transformer.transform();
-
-            response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
 
             out.println(outputHtml);
         } catch (Exception e){
