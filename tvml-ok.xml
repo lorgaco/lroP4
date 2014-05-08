@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='no'?>
+
+<Programacion
+        xmlns="http://www.w3schools.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://localhost:8024/lro24/tvml14.xsd">
+
+      <Fecha>20/12/2001</Fecha>
+
+      <Canal lang='es' teletexto='si'>
+        <NombreCanal>TVE1</NombreCanal>
+        <Programa edadminima='3' langs='es'>
+        <NombrePrograma>Barrio Sesamo</NombrePrograma>
+        <Categoria>Infantiles</Categoria>
+        <Intervalo>
+            <HoraInicio>17:00</HoraInicio>
+            <HoraFin>18:00</HoraFin>
+        </Intervalo>
+        </Programa>
+        <Programa edadminima='8' langs='es en'>
+          <NombrePrograma>National Geographic</NombrePrograma>
+          <Categoria>Documentales</Categoria>
+          <Intervalo>
+            <HoraInicio>20:00</HoraInicio>
+            <Duracion>60</Duracion>
+          </Intervalo>
+          Documentales de la BBC
+        </Programa>
+      </Canal>
+
+      <Canal lang='es'>
+        <NombreCanal>TVE2</NombreCanal>
+        <Programa edadminima='12'>
+          Hazlo tu mismo
+          <NombrePrograma>Bricomania</NombrePrograma>
+          <Categoria>Documentales</Categoria>
+          <Intervalo>
+            <HoraInicio>19:00</HoraInicio>
+            <HoraFin>20:00</HoraFin>
+            <OtraEmision>
+           <Fecha>23/12/2001</Fecha>
+           <UrlTVML>http://localhost:8024/lro24/tvml-ok2.xml</UrlTVML>
+        </OtraEmision>
+          </Intervalo>
+        </Programa>
+        <Programa edadminima='12' langs='es fr de'>
+          <NombrePrograma>Cine de Barrio</NombrePrograma>
+          Una pelicula mas
+          <Categoria>Cine</Categoria>
+          <Intervalo>
+            <HoraInicio>20:00</HoraInicio>
+            <Duracion>60</Duracion>
+          </Intervalo>
+        </Programa>
+      </Canal>
+
+      <Canal lang='en' teletexto='si'>
+        <NombreCanal>BBC</NombreCanal>
+        <Formato>16:9</Formato>
+        <Programa edadminima='3' langs='es'>
+        <NombrePrograma>Noticias BBC</NombrePrograma>
+        <Categoria>Informativos</Categoria>
+        <Intervalo>
+            <HoraInicio>15:00</HoraInicio>
+            <HoraFin>16:00</HoraFin>
+        </Intervalo>
+        </Programa>
+        <Programa edadminima='8' langs='es en de'>
+          Las ultimas noticias de los deportes
+          <NombrePrograma>Deportes de riesgo</NombrePrograma>
+          <Categoria>Deportes</Categoria>
+          <Intervalo>
+            <HoraInicio>20:00</HoraInicio>
+            <Duracion>75</Duracion>
+          </Intervalo>
+        </Programa>
+      </Canal>
+
+      <Canal lang='fr'>
+        <NombreCanal>TFR</NombreCanal>
+        <Programa edadminima='3'>
+        <NombrePrograma>Le cuisine</NombrePrograma>
+        <Categoria>Documentales</Categoria>
+        Secretos de la comida francesa
+        <Intervalo>
+            <HoraInicio>17:00</HoraInicio>
+            <HoraFin>19:00</HoraFin>
+        </Intervalo>
+        </Programa>
+      </Canal>
+
+      <Canal lang='it' teletexto='si'>
+        <NombreCanal>TVIT</NombreCanal>
+        <Formato>4:3</Formato>
+        <Programa edadminima='8' langs='en es it'>
+        <NombrePrograma>Il Cinema</NombrePrograma>
+        <Categoria>Cine</Categoria>
+        <Intervalo>
+            <HoraInicio>11:00</HoraInicio>
+            <HoraFin>13:00</HoraFin>
+        </Intervalo>
+        Cinema per tuti
+        </Programa>
+      </Canal>
+</Programacion>
