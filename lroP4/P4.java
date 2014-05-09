@@ -41,7 +41,7 @@ public class P4 extends HttpServlet {
 
         out.println("<html><head><title>Servicio de TV</title>");
         out.println("</head><body>");
-        out.println("<h1>Servicio de consulta de la programaci&oacute" + n + ";n</h1>");
+        out.println("<h1>Servicio de consulta de la programaci&oacute;n</h1>");
         out.println("<h2>Bienvenido a este servicio</h2>");
         out.println("<h3>Selecciona lo que quieres buscar:</h3>");
         out.println("<form method='POST' action='?step=1'>");
