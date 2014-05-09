@@ -35,7 +35,6 @@ public class P4 extends HttpServlet {
             throws IOException, ServletException {
 
         TvmlReader TvGuide = new TvmlReader();
-        String n= TvGuide.Read();
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
