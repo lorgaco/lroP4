@@ -6,8 +6,8 @@
         <html>
             <head><title>Servicio de TV</title></head>
             <body>
-                <h1>Servicio de consulta de la programaci&oacute;n</h1>
-                <h2>Programaci&oacute;n</h2>
+                <h1>Servicio de consulta de la programación</h1>
+                <h2>Programación</h2>
                 <table border="1">
                     <tr bgcolor="#9acd32">
                         <th>Canal</th>
@@ -41,7 +41,7 @@
                 </table>
                 <br />
                 <form>
-                    <input type='submit' value='Atr&aacute;s' onClick='document.forms[0].method="GET"'>
+                    <input type='submit' value='Atrás' onClick='document.forms[0].method="GET"'>
                 </form>
             </body>
         </html>
