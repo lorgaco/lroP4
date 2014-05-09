@@ -32,6 +32,7 @@ public class TvmlReader {
 			dbf.setValidating(true);
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			db.setErrorHandler(new TVML_ErrorHandler());
+            days = new ArrayList<lroP4.dayStruct>();
 
             dayStruct day = new dayStruct();
             day.url = "http://localhost:8024/lro24/tvml-ok.xml";
