@@ -51,7 +51,7 @@ public class TvmlReader {
 					Element eChannel = (Element)lChannels.item(jj);
 
                     NodeList nlUrl = eChannel.getElementsByTagName("UrlTVML");
-					if(nDay.url.getLength()>0){
+					if(nlUrl.getLength()>0){
 						try{
                             dayStruct nDay = new dayStruct();
                             nDay.url = nlUrl.item(0).getTextContent();
