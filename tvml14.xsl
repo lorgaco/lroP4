@@ -7,9 +7,9 @@
             <head><title>Servicio de TV</title></head>
             <body>
                 <h1>Servicio de consulta de la programación</h1>
-                <h2>Programación</h2>
+                <h2>Programación del <xsl:value-of select="Programacion/Fecha"/></h2>
                 <table border="1">
-                    <tr bgcolor="#9acd32">
+                    <tr bgcolor="#ff609e26">
                         <th>Canal</th>
                         <th>Hora</th>
                         <th>Programa</th>

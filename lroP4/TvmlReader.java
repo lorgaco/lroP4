@@ -45,8 +45,7 @@ public class TvmlReader {
 			do{
 				it = days.listIterator(ii);
                 day = it.next();
-                day.day = doc.getDocumentElement().getElementsByTagName("Fecha").item(0).getTextContent();
-                days.set(ii,day);
+
                 NodeList lChannels = day.doc.getElementsByTagName("Canal");
 				
 				for(int jj=0; jj<lChannels.getLength(); jj++){
@@ -59,6 +58,7 @@ public class TvmlReader {
                             nDay.url = nlUrl.item(0).getTextContent();
                             doc = db.parse(nDay.url);
                             nDay.doc = doc;
+                            nDay.day = doc.getDocumentElement().getElementsByTagName("Fecha").item(0).getTextContent();
                             days.add(nDay);
 						}catch(Exception ex){
 							ex.printStackTrace();
