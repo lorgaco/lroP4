@@ -52,10 +52,11 @@ public class TvmlReader {
 				for(int jj=0; jj<lChannels.getLength(); jj++){
 					Element eChannel = (Element)lChannels.item(jj);
 
-					if(nlUrl.getLength()>0){
+                    dayStruct nDay = new dayStruct();
+                    nDay.url = eChannel.getElementsByTagName("UrlTVML").item(0).getTextContent();
+
+					if(nDay.url.getLength()>0){
 						try{
-                            dayStruct nDay = new dayStruct();
-                            nDay.url = eChannel.getElementsByTagName("UrlTVML").item(0).getTextContent();
                             doc = db.parse(nDay.url);
                             nDay.doc = doc;
                             days.add(nDay);
