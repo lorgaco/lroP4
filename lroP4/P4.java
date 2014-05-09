@@ -50,10 +50,10 @@ public class P4 extends HttpServlet {
         for(int ii=0; ii<days.size(); ii++){
             dayStruct day = it.next();
             if(ii==days.size()-1){
-                out.println("<input type='radio' name='day' value='" + day.url + "' checked> " + day.day + "<BR>");
+                out.println("<input type='radio' name='sURL' value='" + day.url + "' checked> " + day.day + "<BR>");
             }
             else{
-                out.println("<input type='radio' name='day' value='" + day.url + "' > " + day.day + "<BR>");
+                out.println("<input type='radio' name='sURL' value='" + day.url + "' > " + day.day + "<BR>");
             }
         }
         out.println("<p><input type='submit' value='Enviar'>");
@@ -68,8 +68,10 @@ public class P4 extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
+            String sURL = request.getParameter("sURL");
+
             TvmlTransformer transformer = new TvmlTransformer();
-            String outputHtml = transformer.transform();
+            String outputHtml = transformer.transform(sURL);
 
             out.println(outputHtml);
         } catch (Exception e){
@@ -86,9 +88,9 @@ public class P4 extends HttpServlet {
 }
 
 class TvmlTransformer {
-    String transform () throws IOException, TransformerException, SAXException, ParserConfigurationException {
+    String transform (String sURL) throws IOException, TransformerException, SAXException, ParserConfigurationException {
 
-        URL urlTvml = new URL("http://localhost:8024/lro24/tvml-ok.xml");
+        URL urlTvml = new URL(sURL);
         URLConnection conTvml = urlTvml.openConnection();
         //StreamSource tvmlStream = new StreamSource(conTvml.getInputStream());
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
