@@ -38,6 +38,7 @@ public class TvmlReader {
             day.url = "http://localhost:8024/lro24/tvml-ok.xml";
             Document doc = db.parse(day.url);
             day.doc = doc;
+            day.day = doc.getDocumentElement().getElementsByTagName("Fecha").item(0).getTextContent();
             days.add(day);
 
 			ListIterator<dayStruct> it = days.listIterator();
