@@ -41,7 +41,7 @@
                 </table>
                 <br />
                 <form>
-                    <input type='submit' value='Atrás' onClick='document.forms[0].method="GET"'>
+                    <input type='submit' value='Atrás' onClick='document.forms[0].method="GET"'/>
                 </form>
             </body>
         </html>
