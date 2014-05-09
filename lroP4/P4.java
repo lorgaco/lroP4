@@ -30,6 +30,37 @@ public class P4 extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
+        TvGuide = new TvmlReader();
+        String n= TvGuide.Read();
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        out.println("<html><head><title>Servicio de TV</title>");
+        out.println("</head><body>");
+        out.println("<h1>Servicio de consulta de la programaci&oacute" + n + ";n</h1>");
+        out.println("<h2>Bienvenido a este servicio</h2>");
+        out.println("<h3>Selecciona lo que quieres buscar:</h3>");
+        out.println("<form method='POST' action='?step=1'>");
+        List<dayStruct> days = TvGuide.Read();
+        ListIterator<dayStruct> it = days.listIterator();
+        for(int ii=0; ii<days.size(); ii++){
+            dayStruct day = it.next();
+            if(ii==days.size()-1){
+                out.println("<input type='radio' name='day' value='" + day.url + "' checked> " + day.day + "<BR>");
+            }
+            else{
+                out.println("<input type='radio' name='day' value='" + day.url + "' > " + day.day + "<BR>");
+            }
+        }
+        out.println("<p><input type='submit' value='Enviar'>");
+        out.println("</form>");
+        out.println("</body></html>");
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
