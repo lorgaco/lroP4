@@ -56,7 +56,9 @@ public class P4 extends HttpServlet {
                 out.println("<input type='radio' name='sURL' value='" + day.url + "' > " + day.day + "<BR>");
             }
         }
-        out.println("<p><input type='submit' value='Enviar'>");
+        if (days.size()>0) {
+            out.println("<p><input type='submit' value='Enviar'>");
+        }
         out.println("</form>");
         out.println("</body></html>");
     }
