@@ -18,8 +18,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import packages.*;
-
 
 public class TvmlReader {
     List<dayStruct> days;
@@ -52,11 +50,11 @@ public class TvmlReader {
 				for(int jj=0; jj<lChannels.getLength(); jj++){
 					Element eChannel = (Element)lChannels.item(jj);
 
-                    dayStruct nDay = new dayStruct();
-                    nDay.url = eChannel.getElementsByTagName("UrlTVML").item(0).getTextContent();
-
+                    NodeList nlUrl = eChannel.getElementsByTagName("UrlTVML");
 					if(nDay.url.getLength()>0){
 						try{
+                            dayStruct nDay = new dayStruct();
+                            nDay.url = nlUrl.item(0).getTextContent();
                             doc = db.parse(nDay.url);
                             nDay.doc = doc;
                             days.add(nDay);
