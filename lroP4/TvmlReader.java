@@ -26,6 +26,15 @@ public class TvmlReader {
 
 	void TvmlReader(){}
 
+    private boolean checkDay(String day){
+        ListIterator<dayStruct> it = days.listIterator();
+        for(int ii=0; ii<days.size(); ii++) {
+            dayStruct sDay = it.next();
+            if(sDay.day.equals(day)) return true;
+        }
+        return false;
+    }
+
     List<dayStruct> Read(){
 		try{
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -60,7 +69,7 @@ public class TvmlReader {
                             doc = db.parse(nDay.url);
                             nDay.doc = doc;
                             nDay.day = doc.getDocumentElement().getElementsByTagName("Fecha").item(0).getTextContent();
-                            days.add(nDay);
+                            if(!checkDay(nDay.day)) days.add(nDay);
 						}catch(Exception ex){
 							ex.printStackTrace();
 							url="no doc found";
