@@ -34,7 +34,8 @@ public class P4 extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        TvmlReader TvGuide = new TvmlReader();
+        TvGuide = new TvmlReader();
+        String errors = TvGuide.Read();
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -43,9 +44,10 @@ public class P4 extends HttpServlet {
         out.println("</head><body>");
         out.println("<h1>Servicio de consulta de la programaci&oacute;n</h1>");
         out.println("<h2>Bienvenido a este servicio</h2>");
+        out.println("Estado de los TVML:<br />" + errors);
         out.println("<h3>Selecciona lo que quieres buscar:</h3>");
         out.println("<form method='POST' action='?step=1'>");
-        List<dayStruct> days = TvGuide.Read();
+        List<dayStruct> days = TvGuide.getDays();
         ListIterator<dayStruct> it = days.listIterator();
         for(int ii=0; ii<days.size(); ii++){
             dayStruct day = it.next();

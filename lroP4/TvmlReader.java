@@ -35,8 +35,12 @@ public class TvmlReader {
         return false;
     }
 
-    List<dayStruct> Read(){
-		try{
+    String Read(){
+
+        String errors = "All files ok";
+
+        try{
+
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			dbf.setValidating(true);
 			DocumentBuilder db = dbf.newDocumentBuilder();
@@ -67,36 +71,66 @@ public class TvmlReader {
                             dayStruct nDay = new dayStruct();
                             nDay.url = nlUrl.item(0).getTextContent();
                             doc = db.parse(nDay.url);
-                            nDay.doc = doc;
-                            nDay.day = doc.getDocumentElement().getElementsByTagName("Fecha").item(0).getTextContent();
-                            if(!checkDay(nDay.day)) days.add(nDay);
-						}catch(Exception ex){
-							ex.printStackTrace();
-							url="no doc found";
-						}
+                            String Error = ErrorHandler.getError();
+                            if(Error.equals("Ok")) {
+                                nDay.doc = doc;
+                                nDay.day = doc.getDocumentElement().getElementsByTagName("Fecha").item(0).getTextContent();
+                                if (!checkDay(nDay.day)) days.add(nDay);
+                            }
+                            else {
+                                if(errors.equals("All files ok")) errors = "";
+                                errors = errors + Error + "<br />";
+                            }
+                        } catch (Exception ex) {
+                            if(errors.equals("All files ok")) errors = "";
+                            final StringWriter sw = new StringWriter();
+                            final PrintWriter pw = new PrintWriter(sw, true);
+                            ex.printStackTrace(pw);
+                            errors = errors + "Error: " + ex.toString() + "<br />";
+                        }
 					}
 				}
                 ii++;
 			}while(ii<days.size());
-			
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}
-        return days;
+
+        }catch(Exception ex){
+            //ex.printStackTrace();
+            final StringWriter sw = new StringWriter();
+            final PrintWriter pw = new PrintWriter(sw, true);
+            ex.printStackTrace(pw);
+            return sw.getBuffer().toString();
+        }
+
+        return errors;
 	}
+
+    List<dayStruct> getDays() {
+        return days;
+    }
+
 }
 
 class TVML_ErrorHandler extends DefaultHandler {
-	public TVML_ErrorHandler () {}
-	public void warning(SAXParseException spe) {
-		System.out.println("Warning: "+spe.toString());
-	}
-	public void error(SAXParseException spe) {
-		System.out.println("Error: "+spe.toString());
-	}
-	public void fatalerror(SAXParseException spe) {
-		System.out.println("Fatal Error: "+spe.toString());
-	}
+
+    String Error;
+
+    public TVML_ErrorHandler () {
+        Error = "Ok";
+    }
+    public void warning(SAXParseException spe) {
+        Error = "Warning: "+spe.toString();
+    }
+    public void error(SAXParseException spe) {
+        Error = "Error: "+spe.toString();
+    }
+    public void fatalerror(SAXParseException spe) {
+        Error = "Fatal Error: "+spe.toString();
+    }
+    public String getError() {
+        String toReturn = new String(Error);
+        Error = "Ok";
+        return toReturn;
+    }
 }
 
 class dayStruct {
