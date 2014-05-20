@@ -29,7 +29,7 @@ import org.xml.sax.SAXException;
 
 public class P4 extends HttpServlet {
 
-    //TvmlReader TvGuide;
+    TvmlReader TvGuide;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
